@@ -5,6 +5,7 @@ require("./tasks/getBlockNumber")
 const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL;
 const PRIVATE_KEY = process.env.TEST_WALLET;
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
+const COINMARKET_CAP_API_KEY = process.env.COINMARKET_CAP_API_KEY
 
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   const accounts = await hre.ethers.getSigners();
@@ -34,4 +35,12 @@ module.exports = {
       sepolia: ETHERSCAN_API_KEY,
     },
   },
+  gasReporter:{
+    enabled: false,
+    outputFile: 'gas-report.txt',
+    noColors: true,
+    currency: "INR",
+    coinmarketcap: COINMARKET_CAP_API_KEY,
+    token: "MATIC"
+  }
 };
